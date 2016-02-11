@@ -17,6 +17,7 @@ CALL php-files\sdk\bin\phpsdk_setvars.bat
 
 CD php-files\src\%PHPTAG%
 
+echo %PATH%
 CALL buildconf.bat
 
 IF "%PHPTS%"=="nts" SET ZTSARG="--disable-zts" || SET ZTSARG=""
