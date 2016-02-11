@@ -30,7 +30,7 @@ GOTO vcBad
   CALL "C:\Program Files\Microsoft SDKs\Windows\v7.0\Bin\SetEnv.cmd" /xp /%ARCH% /release
   @ECHO ON
   REM Fix bug in 2008 SetEnv
-  PATH=C:\Windows\system32;%PATH%
+  SET PATH=C:\Windows\system32;%PATH%
   GOTO End
 
 :vc10
