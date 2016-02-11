@@ -25,7 +25,7 @@ GOTO vcBad
 
 :vc9
   ECHO Using Visual Studio 2008
-  SETLOCAL EnableDelayedExpansion
+  rem SETLOCAL EnableDelayedExpansion
   SET MSVSYEAR=2008
   CALL "C:\Program Files\Microsoft SDKs\Windows\v7.0\Bin\SetEnv.cmd" /xp /%ARCH% /release
   @ECHO ON
