@@ -61,4 +61,6 @@ GOTO End
 :End
 COLOR 07
 TITLE CB SDK Build Bot Env - %MSVSVER% - %ARCH%
+echo %PATH%
+echo exiting
 EXIT /B 0
