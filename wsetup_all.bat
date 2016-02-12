@@ -4,12 +4,10 @@ SET ARCH=%1
 
 echo Installing libcouchbase %ARCH%
 IF "%LCBVER%"=="" (
-    SET LCBVER=2.4.9 2.5.3
+    SET LCBVER=2.5.3
 )
 
-FOR %%x in (%LCBVER%) DO (
-  CALL wsetup_lcb.bat %%x %ARCH%
-)
+CALL wsetup_lcb.bat %LCBVER% %ARCH%
 
 echo Installing Node.js %ARCH%
 CALL wsetup_njs.bat njs 0.10.40 %ARCH%
