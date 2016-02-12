@@ -3,10 +3,12 @@
 MYDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 ARCH=$1
 PLAT=$2
+LCBVER=${LCBVER:-2.4.9 2.5.3}
 
 echo "Installing libcouchbase $ARCH"
-./lsetup_lcb 2.4.9 $ARCH $PLAT
-./lsetup_lcb 2.5.3 $ARCH $PLAT
+for lver in $LCBVER; do
+    ./lsetup_lcb $lver $ARCH $PLAT
+done
 
 echo "Installing Node.js $ARCH"
 ./lsetup_njs njs 0.10.40 $ARCH $PLAT
