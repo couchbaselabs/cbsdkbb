@@ -18,4 +18,4 @@ if [ "$PHPTS"=='zts' ]; then
   ZTSARG='--enable-maintainer-zts'
 fi
 
-./configure --disable-all --enable-phar=shared --enable-cli --prefix=$MYDIR/php-files/build/$PHPTAG $ZTSARG && make && make install
+./configure --disable-all --enable-dom=shared --enable-phar=shared --enable-cli --prefix=$MYDIR/php-files/build/$PHPTAG $ZTSARG && make && make install
