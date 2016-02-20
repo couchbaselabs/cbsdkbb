@@ -13,6 +13,7 @@ else
 
   wget -nc "http://php.net/get/php-$PHPVER.tar.bz2/from/this/mirror" -O src/php-src-$PHPVER.tar.bz2
   wget -nc "https://phar.phpunit.de/phpunit.phar" -O src/php-phpunit.phar
+  wget -nc "https://phar.phpunit.de/phpunit-old.phar" -O src/php-phpunit-old.phar
   wget -nc "http://phpdoc.org/phpDocumentor.phar" -O src/php-phpdoc.phar
 
 
@@ -30,7 +31,11 @@ else
   fi
   echo "Adding NTS Helpers"
   if [ ! -e php-files/build/$PHPVER-nts-$ARCH/phpunit.phar ]; then
-    cp src/php-phpunit.phar php-files/build/$PHPVER-nts-$ARCH/phpunit.phar
+    if [[ $PHPVER == 5.6* ]]; then
+      cp src/php-phpunit.phar php-files/build/$PHPVER-nts-$ARCH/phpunit.phar
+    else
+      cp src/php-phpunit-old.phar php-files/build/$PHPVER-nts-$ARCH/phpunit.phar
+    fi
   fi
   if [ ! -e php-files/build/$PHPVER-nts-$ARCH/phpdoc.phar ]; then
     cp src/php-phpdoc.phar php-files/build/$PHPVER-nts-$ARCH/phpdoc.phar
@@ -47,7 +52,11 @@ else
   fi
   echo "Adding ZTS Helpers"
   if [ ! -e php-files/build/$PHPVER-zts-$ARCH/phpunit.phar ]; then
-    cp src/php-phpunit.phar php-files/build/$PHPVER-zts-$ARCH/phpunit.phar
+    if [[ $PHPVER == 5.6* ]]; then
+      cp src/php-phpunit.phar php-files/build/$PHPVER-nts-$ARCH/phpunit.phar
+    else
+      cp src/php-phpunit-old.phar php-files/build/$PHPVER-nts-$ARCH/phpunit.phar
+    fi
   fi
   if [ ! -e php-files/build/$PHPVER-zts-$ARCH/phpdoc.phar ]; then
     cp src/php-phpdoc.phar php-files/build/$PHPVER-zts-$ARCH/phpdoc.phar

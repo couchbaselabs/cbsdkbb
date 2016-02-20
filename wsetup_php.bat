@@ -23,6 +23,7 @@ if "%BUILDENABLED%"=="1" (
   tools\wget -nc "http://php.net/get/php-%PHPVER%.tar.bz2/from/this/mirror" -O src\php-src-%PHPVER%.tar.bz2
   tools\wget -nc "http://windows.php.net/downloads/php-sdk/php-sdk-binary-tools-20110915.zip" -O src\php-sdk.zip
   tools\wget -nc "https://phar.phpunit.de/phpunit.phar" -O src\php-phpunit.phar
+  tools\wget -nc "https://phar.phpunit.de/phpunit-old.phar" -O src\php-phpunit-old.phar
   tools\wget -nc "http://phpdoc.org/phpDocumentor.phar" -O src\php-phpdoc.phar
 
 
@@ -47,7 +48,11 @@ if "%BUILDENABLED%"=="1" (
   )
   echo Adding NTS Helpers
   IF NOT EXIST php-files\build\%PHPVER%-nts-%MSVSVER%-%ARCH%\phpunit.phar (
-    copy src\php-phpunit.phar php-files\build\%PHPVER%-nts-%MSVSVER%-%ARCH%\phpunit.phar
+    IF "%PHPVER:~0,3%"=="5.6" (
+      copy src\php-phpunit.phar php-files\build\%PHPVER%-nts-%MSVSVER%-%ARCH%\phpunit.phar
+    ) ELSE (
+      copy src\php-phpunit-old.phar php-files\build\%PHPVER%-nts-%MSVSVER%-%ARCH%\phpunit.phar
+    )
   )
   IF NOT EXIST php-files\build\%PHPVER%-nts-%MSVSVER%-%ARCH%\phpdoc.phar (
     copy src\php-phpdoc.phar php-files\build\%PHPVER%-nts-%MSVSVER%-%ARCH%\phpdoc.phar
@@ -67,7 +72,11 @@ if "%BUILDENABLED%"=="1" (
   )
   echo Adding ZTS Helpers
   IF NOT EXIST php-files\build\%PHPVER%-zts-%MSVSVER%-%ARCH%\phpunit.phar (
-    copy src\php-phpunit.phar php-files\build\%PHPVER%-zts-%MSVSVER%-%ARCH%\phpunit.phar
+    IF "%PHPVER:~0,3%"=="5.6" (
+      copy src\php-phpunit.phar php-files\build\%PHPVER%-nts-%MSVSVER%-%ARCH%\phpunit.phar
+    ) ELSE (
+      copy src\php-phpunit-old.phar php-files\build\%PHPVER%-nts-%MSVSVER%-%ARCH%\phpunit.phar
+    )
   )
   IF NOT EXIST php-files\build\%PHPVER%-zts-%MSVSVER%-%ARCH%\phpdoc.phar (
     copy src\php-phpdoc.phar php-files\build\%PHPVER%-zts-%MSVSVER%-%ARCH%\phpdoc.phar
