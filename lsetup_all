@@ -18,6 +18,7 @@ echo "Installing Node.js $ARCH"
 ./lsetup_njs njs 4.0.0 $ARCH $PLAT
 
 echo "Installing PHP $ARCH"
-./lsetup_php 5.6.17 $ARCH $PLAT
-./lsetup_php 5.5.31 $ARCH $PLAT
 ./lsetup_php 5.4.45 $ARCH $PLAT
+./lsetup_php 5.5.31 $ARCH $PLAT
+./lsetup_php 5.6.17 $ARCH $PLAT
+./lsetup_php 7.0.5 $ARCH $PLAT
