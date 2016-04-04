@@ -31,10 +31,10 @@ else
   fi
   echo "Adding NTS Helpers"
   if [ ! -e php-files/build/$PHPVER-nts-$ARCH/phpunit.phar ]; then
-    if [[ $PHPVER == 5.6* ]]; then
-      cp src/php-phpunit.phar php-files/build/$PHPVER-nts-$ARCH/phpunit.phar
-    else
+    if [[ $PHPVER == 5.4* ]] || [[ $PHPVER == 5.5* ]]; then
       cp src/php-phpunit-old.phar php-files/build/$PHPVER-nts-$ARCH/phpunit.phar
+    else
+      cp src/php-phpunit.phar php-files/build/$PHPVER-nts-$ARCH/phpunit.phar
     fi
   fi
   if [ ! -e php-files/build/$PHPVER-nts-$ARCH/phpdoc.phar ]; then
@@ -52,10 +52,10 @@ else
   fi
   echo "Adding ZTS Helpers"
   if [ ! -e php-files/build/$PHPVER-zts-$ARCH/phpunit.phar ]; then
-    if [[ $PHPVER == 5.6* ]]; then
-      cp src/php-phpunit.phar php-files/build/$PHPVER-zts-$ARCH/phpunit.phar
-    else
+    if [[ $PHPVER == 5.4* ]] || [[ $PHPVER == 5.5* ]]; then
       cp src/php-phpunit-old.phar php-files/build/$PHPVER-zts-$ARCH/phpunit.phar
+    else
+      cp src/php-phpunit.phar php-files/build/$PHPVER-zts-$ARCH/phpunit.phar
     fi
   fi
   if [ ! -e php-files/build/$PHPVER-zts-$ARCH/phpdoc.phar ]; then

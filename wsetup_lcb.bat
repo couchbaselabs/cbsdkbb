@@ -7,14 +7,14 @@ SET ARCH=%2
 echo Downloading LCB %1 %2...
 
 if "%ARCH%"=="x86" (
-  tools\wget -nc "http://packages.couchbase.com/clients/c/libcouchbase-%LCBVER%_x86_vc9.zip" -O src\lcb-%LCBVER%-vc9-x86.zip
-  tools\wget -nc "http://packages.couchbase.com/clients/c/libcouchbase-%LCBVER%_x86_vc10.zip" -O src\lcb-%LCBVER%-vc10-x86.zip
-  tools\wget -nc "http://packages.couchbase.com/clients/c/libcouchbase-%LCBVER%_x86_vc11.zip" -O src\lcb-%LCBVER%-vc11-x86.zip
+  tools\wget --no-check-certificate -nc "http://packages.couchbase.com/clients/c/libcouchbase-%LCBVER%_x86_vc9.zip" -O src\lcb-%LCBVER%-vc9-x86.zip
+  tools\wget --no-check-certificate -nc "http://packages.couchbase.com/clients/c/libcouchbase-%LCBVER%_x86_vc10.zip" -O src\lcb-%LCBVER%-vc10-x86.zip
+  tools\wget --no-check-certificate -nc "http://packages.couchbase.com/clients/c/libcouchbase-%LCBVER%_x86_vc11.zip" -O src\lcb-%LCBVER%-vc11-x86.zip
 )
 if "%ARCH%"=="x64" (
-  tools\wget -nc "http://packages.couchbase.com/clients/c/libcouchbase-%LCBVER%_amd64_vc9.zip" -O src\lcb-%LCBVER%-vc9-x64.zip
-  tools\wget -nc "http://packages.couchbase.com/clients/c/libcouchbase-%LCBVER%_amd64_vc10.zip" -O src\lcb-%LCBVER%-vc10-x64.zip
-  tools\wget -nc "http://packages.couchbase.com/clients/c/libcouchbase-%LCBVER%_amd64_vc11.zip" -O src\lcb-%LCBVER%-vc11-x64.zip
+  tools\wget --no-check-certificate -nc "http://packages.couchbase.com/clients/c/libcouchbase-%LCBVER%_amd64_vc9.zip" -O src\lcb-%LCBVER%-vc9-x64.zip
+  tools\wget --no-check-certificate -nc "http://packages.couchbase.com/clients/c/libcouchbase-%LCBVER%_amd64_vc10.zip" -O src\lcb-%LCBVER%-vc10-x64.zip
+  tools\wget --no-check-certificate -nc "http://packages.couchbase.com/clients/c/libcouchbase-%LCBVER%_amd64_vc11.zip" -O src\lcb-%LCBVER%-vc11-x64.zip
 )
 
 
