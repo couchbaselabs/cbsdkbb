@@ -33,6 +33,10 @@ if "%ARCH%"=="x86" (
     tools\7za x -y -otmp\ src\lcb-%LCBVER%-vc11-x86.zip
     move /Y tmp\libcouchbase-%LCBVER%_x86_vc11 lcb-files\%LCBVER%-vc11-x86
   )
+  if not exist lcb-files\%LCBVER%-vc14-x86 (
+    tools\7za x -y -otmp\ src\lcb-%LCBVER%-vc11-x86.zip
+    move /Y tmp\libcouchbase-%LCBVER%_x86_vc11 lcb-files\%LCBVER%-vc14-x86
+  )
 )
 if "%ARCH%"=="x64" (
   if not exist lcb-files\%LCBVER%-vc9-x64 (
@@ -46,6 +50,10 @@ if "%ARCH%"=="x64" (
   if not exist lcb-files\%LCBVER%-vc11-x64 (
     tools\7za x -y -otmp\ src\lcb-%LCBVER%-vc11-x64.zip
     move /Y tmp\libcouchbase-%LCBVER%_amd64_vc11 lcb-files\%LCBVER%-vc11-x64
+  )
+  if not exist lcb-files\%LCBVER%-vc14-x64 (
+    tools\7za x -y -otmp\ src\lcb-%LCBVER%-vc11-x64.zip
+    move /Y tmp\libcouchbase-%LCBVER%_amd64_vc11 lcb-files\%LCBVER%-vc14-x64
   )
 )
 
