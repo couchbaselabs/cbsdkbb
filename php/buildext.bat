@@ -29,7 +29,7 @@ CALL buildconf.bat --force --add-modules-dir=%PHPSRCDIR%ext-dev\
 
 echo CONFIGURE FOR BUILD
 IF %PHPTS%==nts SET ZTSARG="--disable-zts" || SET ZTSARG=""
-CALL configure.bat --disable-all --enable-one-shot --enable-cli --with-prefix=%PHPSRCDIR%ext-dev-build\ --with-%EXTNAME%=shared %ZTSARG%
+CALL configure.bat --disable-all --enable-one-shot --enable-cli --with-prefix=%PHPSRCDIR%\ext-dev-build\ --with-%EXTNAME%=shared %ZTSARG%
 @ECHO ON
 
 
@@ -38,8 +38,11 @@ nmake && nmake install
 @ECHO ON
 
 echo COPY BUILT DLL TO EXTENSION FOLDER
-xcopy /c /q /i /y %PHPSRCDIR%ext-dev-build\php_%EXTNAME%.dll %EXTPATH%\build\
-
+IF "%PHPVER:~0,1%"=="5" (
+  xcopy /c /q /i /y %PHPSRCDIR%\ext-dev-build\php_%EXTNAME%.dll %EXTPATH%\build\
+) ELSE (
+  xcopy /c /q /i /y %PHPSRCDIR%\ext-dev-build\ext\php_%EXTNAME%.dll %EXTPATH%\build\
+)
 
 :End
 ENDLOCAL
