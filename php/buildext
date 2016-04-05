@@ -3,11 +3,12 @@
 MYDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 EXTPATH=$1
 EXTNAME=$2
+EXTRAINFO=$3
 
 cd $EXTPATH
 
 $PHPDIR/phpize
 
-./configure --with-php-config=$PHPDIR/php-config --with-$EXTNAME
+./configure --with-php-config=$PHPDIR/php-config --with-$EXTNAME=$EXTRAINFO
 
 make
