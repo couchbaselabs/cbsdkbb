@@ -9,13 +9,10 @@ echo "Installing libcouchbase $ARCH"
 ./lsetup_lcb $LCBVER $ARCH $PLAT
 
 echo "Installing Node.js $ARCH"
-./lsetup_njs njs 0.10.40 $ARCH $PLAT
-./lsetup_njs njs 0.12.7 $ARCH $PLAT
-./lsetup_njs iojs 1.0.4 $ARCH $PLAT
-./lsetup_njs iojs 1.8.4 $ARCH $PLAT
-./lsetup_njs iojs 2.4.0 $ARCH $PLAT
-./lsetup_njs iojs 3.0.0 $ARCH $PLAT
-./lsetup_njs njs 4.0.0 $ARCH $PLAT
+./lsetup_njs njs 0.10.42 $ARCH $PLAT
+./lsetup_njs njs 0.12.10 $ARCH $PLAT
+./lsetup_njs njs 4.3.0 $ARCH $PLAT
+./lsetup_njs njs 5.6.0 $ARCH $PLAT
 
 echo "Installing PHP $ARCH"
 ./lsetup_php 5.4.45 $ARCH $PLAT

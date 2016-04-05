@@ -10,13 +10,10 @@ IF "%LCBVER%"=="" (
 CALL wsetup_lcb.bat %LCBVER% %ARCH%
 
 echo Installing Node.js %ARCH%
-CALL wsetup_njs.bat njs 0.10.40 %ARCH%
-CALL wsetup_njs.bat njs 0.12.7 %ARCH%
-CALL wsetup_njs.bat iojs 1.0.4 %ARCH%
-CALL wsetup_njs.bat iojs 1.8.4 %ARCH%
-CALL wsetup_njs.bat iojs 2.4.0 %ARCH%
-CALL wsetup_njs.bat iojs 3.0.0 %ARCH%
-CALL wsetup_njs.bat njs 4.0.0 %ARCH%
+CALL wsetup_njs.bat njs 0.10.42 %ARCH%
+CALL wsetup_njs.bat njs 0.12.10 %ARCH%
+CALL wsetup_njs.bat njs 4.3.0 %ARCH%
+CALL wsetup_njs.bat njs 5.6.0 %ARCH%
 
 echo Installing PHP %ARCH%
 CALL wsetup_php.bat 5.4 5.4.45 vc9 %ARCH%
