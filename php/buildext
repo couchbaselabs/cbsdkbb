@@ -8,6 +8,6 @@ cd $EXTPATH
 
 $PHPDIR/phpize
 
-./configure --with-php-config=$PHPDIR/php-config --enable-couchbase
+./configure --with-php-config=$PHPDIR/php-config --with-$EXTNAME
 
 make
