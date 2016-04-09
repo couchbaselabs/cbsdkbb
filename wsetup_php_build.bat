@@ -20,7 +20,7 @@ CD php-files\src\%PHPTAG%
 CALL buildconf.bat
 
 IF "%PHPTS%"=="nts" SET ZTSARG="--disable-zts" || SET ZTSARG=""
-CALL configure.bat --enable-one-shot --disable-all --enable-cli --with-prefix=%BBROOT%php-files\build\%PHPTAG%\ %ZTSARG%
+CALL configure.bat --enable-one-shot --disable-all --enable-phar=shared --enable-json --enable-cli --with-prefix=%BBROOT%php-files\build\%PHPTAG%\ %ZTSARG%
 
 nmake && nmake install
 
