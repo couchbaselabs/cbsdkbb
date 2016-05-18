@@ -9,6 +9,7 @@ cd $EXTPATH
 
 $PHPDIR/phpize
 
+$PHPDIR/php-config
 ./configure --with-php-config=$PHPDIR/php-config --with-$EXTNAME=$EXTRAINFO
 
 make
