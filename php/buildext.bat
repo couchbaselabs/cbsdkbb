@@ -16,9 +16,10 @@ CALL "%PHPSDKDIR%\bin\phpsdk_setvars.bat"
 del %EXTPATH%\build\php_%EXTNAME%.dll
 
 echo CLEAN AND SETUP EXT BUILD FOLDER
-rmdir /s /q %PHPSRCDIR%\ext-dev\
-rmdir /s /q %PHPSRCDIR%\ext-dev-build\
-xcopy /c /q /i /y /s %EXTPATH%* %PHPSRCDIR%\ext-dev\%EXTNAME%\
+rmdir /s /q %PHPSRCDIR%ext-dev\
+rmdir /s /q %PHPSRCDIR%ext-dev-build\
+rmdir /s /q %PHPSRCDIR%Release\ext-dev\
+xcopy /c /q /i /y /s %EXTPATH%* %PHPSRCDIR%ext-dev\%EXTNAME%\
 
 echo SWITCH TO SRC FOLDER
 cd %PHPSRCDIR%
