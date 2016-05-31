@@ -40,7 +40,11 @@ nmake && nmake install
 
 echo COPY BUILT DLL TO EXTENSION FOLDER
 IF "%PHPVER:~0,1%"=="5" (
-  xcopy /c /q /i /y %PHPSRCDIR%\ext-dev-build\php_%EXTNAME%.dll %EXTPATH%\build\
+  IF EXIST %PHPSRCDIR%\ext-dev-build\php_%EXTNAME%.dll (
+    xcopy /c /q /i /y %PHPSRCDIR%\ext-dev-build\php_%EXTNAME%.dll %EXTPATH%\build\
+  ) ELSE IF EXIST %PHPSRCDIR%\ext-dev-build\ext\php_%EXTNAME%.dll (
+    xcopy /c /q /i /y %PHPSRCDIR%\ext-dev-build\ext\php_%EXTNAME%.dll %EXTPATH%\build\
+  )
 ) ELSE (
   xcopy /c /q /i /y %PHPSRCDIR%\ext-dev-build\ext\php_%EXTNAME%.dll %EXTPATH%\build\
 )
