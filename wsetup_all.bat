@@ -17,8 +17,8 @@ CALL wsetup_njs.bat njs 5.6.0 %ARCH%
 
 echo Installing PHP %ARCH%
 CALL wsetup_php.bat 5.4 5.4.45 vc9 %ARCH%
-CALL wsetup_php.bat 5.5 5.5.31 vc11 %ARCH%
-CALL wsetup_php.bat 5.6 5.6.17 vc11 %ARCH%
-CALL wsetup_php.bat 7.0 7.0.5 vc14 %ARCH%
+CALL wsetup_php.bat 5.5 5.5.35 vc11 %ARCH%
+CALL wsetup_php.bat 5.6 5.6.21 vc11 %ARCH%
+CALL wsetup_php.bat 7.0 7.0.7 vc14 %ARCH%
 
 ENDLOCAL
