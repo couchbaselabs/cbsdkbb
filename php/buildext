@@ -10,6 +10,6 @@ cd $EXTPATH
 $PHPDIR/phpize
 
 $PHPDIR/php-config || true
-./configure --with-php-config=$PHPDIR/php-config --with-$EXTNAME=$EXTRAINFO $($PHPDIR/php --configure-options)
+./configure --with-php-config=$PHPDIR/php-config --with-$EXTNAME=$EXTRAINFO $($PHPDIR/php-config --configure-options)
 
 make clean all
