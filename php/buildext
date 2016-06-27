@@ -12,4 +12,4 @@ $PHPDIR/phpize
 $PHPDIR/php-config || true
 ./configure --with-php-config=$PHPDIR/php-config --with-$EXTNAME=$EXTRAINFO
 
-make
+make clean all
