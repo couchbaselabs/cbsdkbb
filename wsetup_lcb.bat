@@ -22,9 +22,6 @@ if "%ARCH%"=="x64" (
 
 echo Installing LCB %1 %2...
 
-DEL /F lcb-files\%LCBVER%-vc14-x86
-DEL /F lcb-files\%LCBVER%-vc14-x64
-
 if "%ARCH%"=="x86" (
   if not exist lcb-files\%LCBVER%-vc9-x86 (
     tools\7za x -y -otmp\ src\lcb-%LCBVER%-vc9-x86.zip
