@@ -28,15 +28,17 @@ else
   PLAT='other'
 fi
 
+
+CFLAGS="-ggdb3"
 if [ "${ARCH}" == "x86" ]; then
-  export CFLAGS="-m32"
-  export CXXFLAGS="-m32"
-  export LDFLAGS="-m32"
+  CFLAGS="${CFLAGS} -m32"
+  CXXFLAGS="-m32"
+  LDFLAGS="-m32"
 else
-  export CFLAGS=""
-  export CXXFLAGS=""
-  export LDFLAGS=""
+  CXXFLAGS=""
+  LDFLAGS=""
 fi
+export CFLAGS CXXFLAGS LDFLAGS
 
 echo "Using architecture $ARCH (${MACHINE_NAME}, ${MACHINE_TYPE}, ${MACHINE_ARCH})"
 echo "Detected platform $PLAT (${MACHINE_KERNEL})"

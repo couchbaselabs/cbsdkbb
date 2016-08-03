@@ -10,6 +10,7 @@ cd $EXTPATH
 $PHPDIR/phpize
 
 $PHPDIR/php-config || true
+export CFLAGS="-ggdb3 $CFLAGS"
 ./configure --with-php-config=$PHPDIR/php-config --with-$EXTNAME=$EXTRAINFO $($PHPDIR/php-config --configure-options)
 
 make clean all
