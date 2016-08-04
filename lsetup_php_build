@@ -14,7 +14,7 @@ PHPTAG=$PHPVER-$PHPTS-$ARCH
 cd php-files/src/$PHPTAG
 
 ZTSARG=''
-if [ "$PHPTS"=='zts' ]; then
+if [ "$PHPTS" = 'zts' ]; then
   ZTSARG='--enable-maintainer-zts'
 fi
 
