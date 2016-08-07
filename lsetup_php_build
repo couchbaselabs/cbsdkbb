@@ -17,5 +17,11 @@ ZTSARG=''
 if [ "$PHPTS" = 'zts' ]; then
   ZTSARG='--enable-maintainer-zts'
 fi
+case "$PHPVER" in
+  5.6*)
+    patch < $MYDIR/php/patches/php-5.6-fix-config-nice-generator.patch
+  ;;
+esac
 
-./configure --disable-all --enable-phar=shared --enable-json --enable-cli --prefix=$MYDIR/php-files/build/$PHPTAG $ZTSARG && make && make install
+./configure --disable-all --enable-phar=shared --enable-json --enable-cli --prefix=$MYDIR/php-files/build/$PHPTAG $ZTSARG CFLAGS="-ggdb3 $CFLAGS" && make && make install
+
