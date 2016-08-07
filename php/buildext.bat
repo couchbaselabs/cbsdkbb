@@ -35,7 +35,7 @@ CALL configure.bat --disable-all --enable-json --enable-one-shot --enable-cli --
 
 
 echo BUILD AND INSTALL
-nmake && nmake install
+nmake clean && nmake && nmake install
 @ECHO ON
 
 echo COPY BUILT DLL TO EXTENSION FOLDER
