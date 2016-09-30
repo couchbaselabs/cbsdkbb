@@ -77,12 +77,12 @@ if "%BUILDENABLED%"=="1" (
   echo Adding ZTS Helpers
   IF NOT EXIST php-files\build\%PHPVER%-zts-%MSVSVER%-%ARCH%\phpunit.phar (
     IF "%PHPVER:~0,3%"=="5.4" (
-      copy src\php-phpunit-old.phar php-files\build\%PHPVER%-nts-%MSVSVER%-%ARCH%\phpunit.phar
+      copy src\php-phpunit-old.phar php-files\build\%PHPVER%-zts-%MSVSVER%-%ARCH%\phpunit.phar
     ) ELSE (
       IF "%PHPVER:~0,3%"=="5.5" (
-        copy src\php-phpunit-old.phar php-files\build\%PHPVER%-nts-%MSVSVER%-%ARCH%\phpunit.phar
+        copy src\php-phpunit-old.phar php-files\build\%PHPVER%-zts-%MSVSVER%-%ARCH%\phpunit.phar
       ) ELSE (
-        copy src\php-phpunit.phar php-files\build\%PHPVER%-nts-%MSVSVER%-%ARCH%\phpunit.phar
+        copy src\php-phpunit.phar php-files\build\%PHPVER%-zts-%MSVSVER%-%ARCH%\phpunit.phar
       )
     )
   )
