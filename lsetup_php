@@ -1,9 +1,12 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+set +xe
 
 MYDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 PHPVER=$1
 ARCH=$2
 PLAT=$3
+PCSVER=1.3.1
 
 if [ "$PLAT" == "sunos" ]; then
   echo "Skipping PHP $1 $2 $3 due to SmartOS"
@@ -15,7 +18,13 @@ else
   wget -nc "https://phar.phpunit.de/phpunit.phar" -O src/php-phpunit.phar
   wget -nc "https://phar.phpunit.de/phpunit-old.phar" -O src/php-phpunit-old.phar
   wget -nc "http://phpdoc.org/phpDocumentor.phar" -O src/php-phpdoc.phar
+  wget -nc "https://pecl.php.net/get/pcs-$PCSVER.tgz" -O src/pcs-$PCSVER.tgz
 
+  echo "Extracting PCS extension sources"
+  if [ ! -e php-files/src/pcs-$PCSVER ]; then
+    tar -xzvf src/pcs-$PCSVER.tgz -C tmp
+    mv tmp/pcs-$PCSVER php-files/src/pcs-$PCSVER
+  fi
 
   echo "Installing PHP $1 $2 $3"
 
@@ -26,7 +35,7 @@ else
   fi
   echo "Building NTS"
   if [ ! -e php-files/build/$PHPVER-nts-$ARCH ]; then
-    ./lsetup_php_build $PHPVER nts $ARCH
+    ./lsetup_php_build $PHPVER nts $ARCH $PCSVER
     cp src/php-phpunit.phar php-files/build/$PHPVER-nts-$ARCH/
   fi
   echo "Adding NTS Helpers"
@@ -48,7 +57,7 @@ else
   fi
   echo "Building ZTS"
   if [ ! -e php-files/build/$PHPVER-zts-$ARCH ]; then
-    ./lsetup_php_build $PHPVER zts $ARCH
+    ./lsetup_php_build $PHPVER zts $ARCH $PCSVER
   fi
   echo "Adding ZTS Helpers"
   if [ ! -e php-files/build/$PHPVER-zts-$ARCH/phpunit.phar ]; then

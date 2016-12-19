@@ -1,9 +1,12 @@
-#!/bin/bash -xe
+#!/usr/bin/env bash
+
+set +xe
 
 MYDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 PHPVER=$1
 PHPTS=$2
 ARCH=$3
+PCSVER=$4
 
 echo "Building PHP $1 $2 $3"
 
@@ -23,5 +26,10 @@ case "$PHPVER" in
   ;;
 esac
 
-./configure --disable-all --enable-phar=shared --enable-json --enable-cli --prefix=$MYDIR/php-files/build/$PHPTAG $ZTSARG CFLAGS="-ggdb3 $CFLAGS" && make && make install
+PREFIX=$MYDIR/php-files/build/$PHPTAG
+./configure --disable-all --enable-phar=shared --enable-json --enable-cli --prefix=$PREFIX $ZTSARG CFLAGS="-ggdb3 $CFLAGS" && make && make install
 
+cd ../pcs-$PCSVER
+$PREFIX/bin/phpize
+./configure --with-php-config=$PREFIX/bin/php-config $($PREFIX/bin/php-config --configure-options) --enable-pcs
+make && make install
