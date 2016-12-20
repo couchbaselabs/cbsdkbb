@@ -5,6 +5,7 @@ SET PHPVER=%2
 SET MSVSVER=%3
 SET ARCH=%4
 SET PCSVER=1.3.1
+SET PATCH="c:\progra~1\git\usr\bin\patch.exe"
 
 
 SET BUILDENABLED=1
@@ -44,11 +45,13 @@ if "%BUILDENABLED%"=="1" (
     move /Y tmp\php-%PHPVER% php-files\src\%PHPVER%-nts-%MSVSVER%-%ARCH%
   )
   echo Extracting PCS extension sources
-  IF NOT EXIST php-files\src\%PHPVER%-nts-%MSVSVER%-%ARCH%\ext\pcs-%PCSVER% (
+  IF NOT EXIST php-files\src\%PHPVER%-nts-%MSVSVER%-%ARCH%\ext\pcs (
     IF NOT EXIST tmp\pcs-%PCSVER%.tar (
       tools\7za x -y -otmp\ src\pcs-%PCSVER%.tgz
     )
     tools\7za x -y -ophp-files\src\%PHPVER%-nts-%MSVSVER%-%ARCH%\ext\ tmp\pcs-%PCSVER%.tar
+    move /Y php-files\src\%PHPVER%-nts-%MSVSVER%-%ARCH%\ext\pcs-%PCSVER% php-files\src\%PHPVER%-nts-%MSVSVER%-%ARCH%\ext\pcs
+    %PATCH% -i %BBROOT%\php\patches\pcs-win-install-headers.patch -d %BBROOT%\php-files\src\%PHPVER%-nts-%MSVSVER%-%ARCH%\ext\pcs
   )
   echo Building NTS
   IF NOT EXIST php-files\build\%PHPVER%-nts-%MSVSVER%-%ARCH% (
@@ -79,11 +82,13 @@ if "%BUILDENABLED%"=="1" (
     move /Y tmp\php-%PHPVER% php-files\src\%PHPVER%-zts-%MSVSVER%-%ARCH%
   )
   echo Extracting PCS extension sources
-  IF NOT EXIST php-files\src\%PHPVER%-zts-%MSVSVER%-%ARCH%\ext\pcs-%PCSVER% (
+  IF NOT EXIST php-files\src\%PHPVER%-zts-%MSVSVER%-%ARCH%\ext\pcs (
     IF NOT EXIST tmp\pcs-%PCSVER%.tar (
       tools\7za x -y -otmp\ src\pcs-%PCSVER%.tgz
     )
     tools\7za x -y -ophp-files\src\%PHPVER%-zts-%MSVSVER%-%ARCH%\ext\ tmp\pcs-%PCSVER%.tar
+    move /Y php-files\src\%PHPVER%-zts-%MSVSVER%-%ARCH%\ext\pcs-%PCSVER% php-files\src\%PHPVER%-zts-%MSVSVER%-%ARCH%\ext\pcs
+    %PATCH% -i %BBROOT%\php\patches\pcs-win-install-headers.patch -d %BBROOT%\php-files\src\%PHPVER%-zts-%MSVSVER%-%ARCH%\ext\pcs
   )
   echo Building ZTS
   IF NOT EXIST php-files\build\%PHPVER%-zts-%MSVSVER%-%ARCH% (
