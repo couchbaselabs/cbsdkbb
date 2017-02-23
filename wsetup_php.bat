@@ -4,7 +4,6 @@ SET PHPMINVER=%1
 SET PHPVER=%2
 SET MSVSVER=%3
 SET ARCH=%4
-SET PCSVER=1.3.1
 SET PATCH="c:\progra~1\git\usr\bin\patch.exe"
 
 
@@ -27,7 +26,6 @@ if "%BUILDENABLED%"=="1" (
   tools\wget --no-check-certificate -nc "https://phar.phpunit.de/phpunit.phar" -O src\php-phpunit.phar
   tools\wget --no-check-certificate -nc "https://phar.phpunit.de/phpunit-old.phar" -O src\php-phpunit-old.phar
   tools\wget --no-check-certificate -nc "http://phpdoc.org/phpDocumentor.phar" -O src\php-phpdoc.phar
-  tools\wget --no-check-certificate -nc "https://pecl.php.net/get/pcs-%PCSVER%.tgz" -O src\pcs-%PCSVER%.tgz
 
   echo Installing PHP %1 %2 %3 %4
 
@@ -44,18 +42,9 @@ if "%BUILDENABLED%"=="1" (
     tools\7za x -y -otmp\ tmp\php-src-%PHPVER%.tar
     move /Y tmp\php-%PHPVER% php-files\src\%PHPVER%-nts-%MSVSVER%-%ARCH%
   )
-  echo Extracting PCS extension sources
-  IF NOT EXIST php-files\src\%PHPVER%-nts-%MSVSVER%-%ARCH%\ext\pcs (
-    IF NOT EXIST tmp\pcs-%PCSVER%.tar (
-      tools\7za x -y -otmp\ src\pcs-%PCSVER%.tgz
-    )
-    tools\7za x -y -ophp-files\src\%PHPVER%-nts-%MSVSVER%-%ARCH%\ext\ tmp\pcs-%PCSVER%.tar
-    move /Y php-files\src\%PHPVER%-nts-%MSVSVER%-%ARCH%\ext\pcs-%PCSVER% php-files\src\%PHPVER%-nts-%MSVSVER%-%ARCH%\ext\pcs
-    %PATCH% -i %BBROOT%\php\patches\pcs-win-install-headers.patch -d %BBROOT%\php-files\src\%PHPVER%-nts-%MSVSVER%-%ARCH%\ext\pcs
-  )
   echo Building NTS
   IF NOT EXIST php-files\build\%PHPVER%-nts-%MSVSVER%-%ARCH% (
-    CALL wsetup_php_build.bat %PHPVER% nts %MSVSVER% %ARCH% %PCSVER%
+    CALL wsetup_php_build.bat %PHPVER% nts %MSVSVER% %ARCH%
   )
   echo Adding NTS Helpers
   IF NOT EXIST php-files\build\%PHPVER%-nts-%MSVSVER%-%ARCH%\phpunit.phar (
@@ -81,18 +70,9 @@ if "%BUILDENABLED%"=="1" (
     tools\7za x -y -otmp\ tmp\php-src-%PHPVER%.tar
     move /Y tmp\php-%PHPVER% php-files\src\%PHPVER%-zts-%MSVSVER%-%ARCH%
   )
-  echo Extracting PCS extension sources
-  IF NOT EXIST php-files\src\%PHPVER%-zts-%MSVSVER%-%ARCH%\ext\pcs (
-    IF NOT EXIST tmp\pcs-%PCSVER%.tar (
-      tools\7za x -y -otmp\ src\pcs-%PCSVER%.tgz
-    )
-    tools\7za x -y -ophp-files\src\%PHPVER%-zts-%MSVSVER%-%ARCH%\ext\ tmp\pcs-%PCSVER%.tar
-    move /Y php-files\src\%PHPVER%-zts-%MSVSVER%-%ARCH%\ext\pcs-%PCSVER% php-files\src\%PHPVER%-zts-%MSVSVER%-%ARCH%\ext\pcs
-    %PATCH% -i %BBROOT%\php\patches\pcs-win-install-headers.patch -d %BBROOT%\php-files\src\%PHPVER%-zts-%MSVSVER%-%ARCH%\ext\pcs
-  )
   echo Building ZTS
   IF NOT EXIST php-files\build\%PHPVER%-zts-%MSVSVER%-%ARCH% (
-    CALL wsetup_php_build.bat %PHPVER% zts %MSVSVER% %ARCH% %PCSVER%
+    CALL wsetup_php_build.bat %PHPVER% zts %MSVSVER% %ARCH%
   )
   echo Adding ZTS Helpers
   IF NOT EXIST php-files\build\%PHPVER%-zts-%MSVSVER%-%ARCH%\phpunit.phar (

@@ -5,7 +5,6 @@ SET PHPVER=%1
 SET PHPTS=%2
 SET MSVSVER=%3
 SET ARCH=%4
-SET PCSVER=%5
 
 echo Building PHP %1 %2 %3 %4
 
@@ -22,7 +21,7 @@ CALL buildconf.bat --force
 
 SET PREFIX=%BBROOT%php-files\build\%PHPTAG%\
 IF "%PHPTS%"=="nts" SET ZTSARG="--disable-zts" || SET ZTSARG=""
-CALL configure.bat --enable-one-shot --disable-all --enable-tokenizer --enable-pcs=shared --enable-phar=shared --enable-json --enable-cli --with-prefix=%PREFIX% %ZTSARG%
+CALL configure.bat --enable-one-shot --disable-all --enable-phar=shared --enable-json --enable-cli --with-prefix=%PREFIX% %ZTSARG%
 
 nmake && nmake install
 
