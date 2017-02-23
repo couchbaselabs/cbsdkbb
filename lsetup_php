@@ -6,6 +6,7 @@ MYDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 PHPVER=$1
 ARCH=$2
 PLAT=$3
+IGBINARY_VER=2.0.1
 
 if [ "$PLAT" == "sunos" ]; then
   echo "Skipping PHP $1 $2 $3 due to SmartOS"
@@ -17,6 +18,7 @@ else
   wget -nc "https://phar.phpunit.de/phpunit.phar" -O src/php-phpunit.phar
   wget -nc "https://phar.phpunit.de/phpunit-old.phar" -O src/php-phpunit-old.phar
   wget -nc "http://phpdoc.org/phpDocumentor.phar" -O src/php-phpdoc.phar
+  wget -nc "https://pecl.php.net/get/igbinary-${IGBINARY_VER}" -O src/igbinary-${IGBINARY_VER}.tgz
 
   echo "Installing PHP $1 $2 $3"
 
@@ -25,9 +27,14 @@ else
     tar -xjvf src/php-src-$PHPVER.tar.bz2 -C tmp
     mv tmp/php-$PHPVER php-files/src/$PHPVER-nts-$ARCH
   fi
+  echo "Extracting IGBINARY extension sources for NTS"
+  if [ ! -e php-files/src/$PHPVER-nts-$ARCH/igbinary-${IGBINARY_VER} ]; then
+    tar -xzvf src/igbinary-${IGBINARY_VER}.tgz -C tmp
+    mv tmp/igbinary-${IGBINARY_VER} php-files/src/$PHPVER-nts-$ARCH/igbinary-${IGBINARY_VER}
+  fi
   echo "Building NTS"
   if [ ! -e php-files/build/$PHPVER-nts-$ARCH ]; then
-    ./lsetup_php_build $PHPVER nts $ARCH
+    ./lsetup_php_build $PHPVER nts $ARCH $IGBINARY_VER
     cp src/php-phpunit.phar php-files/build/$PHPVER-nts-$ARCH/
   fi
   echo "Adding NTS Helpers"
@@ -47,9 +54,14 @@ else
     tar -xjvf src/php-src-$PHPVER.tar.bz2 -C tmp
     mv tmp/php-$PHPVER php-files/src/$PHPVER-zts-$ARCH
   fi
+  echo "Extracting IGBINARY extension sources for ZTS"
+  if [ ! -e php-files/src/$PHPVER-zts-$ARCH/igbinary-${IGBINARY_VER} ]; then
+    tar -xzvf src/igbinary-${IGBINARY_VER}.tgz -C tmp
+    mv tmp/igbinary-${IGBINARY_VER} php-files/src/$PHPVER-zts-$ARCH/igbinary-${IGBINARY_VER}
+  fi
   echo "Building ZTS"
   if [ ! -e php-files/build/$PHPVER-zts-$ARCH ]; then
-    ./lsetup_php_build $PHPVER zts $ARCH
+    ./lsetup_php_build $PHPVER zts $ARCH $IGBINARY_VER
   fi
   echo "Adding ZTS Helpers"
   if [ ! -e php-files/build/$PHPVER-zts-$ARCH/phpunit.phar ]; then

@@ -4,6 +4,7 @@ SET PHPMINVER=%1
 SET PHPVER=%2
 SET MSVSVER=%3
 SET ARCH=%4
+SET IGBINARY_VER=2.0.1
 SET PATCH="c:\progra~1\git\usr\bin\patch.exe"
 
 
@@ -26,6 +27,7 @@ if "%BUILDENABLED%"=="1" (
   tools\wget --no-check-certificate -nc "https://phar.phpunit.de/phpunit.phar" -O src\php-phpunit.phar
   tools\wget --no-check-certificate -nc "https://phar.phpunit.de/phpunit-old.phar" -O src\php-phpunit-old.phar
   tools\wget --no-check-certificate -nc "http://phpdoc.org/phpDocumentor.phar" -O src\php-phpdoc.phar
+  tools\wget --no-check-certificate -nc "https://pecl.php.net/get/igbinary-%IGBINARY_VER%.tgz" -O src\igbinary-%IGBINARY_VER%.tgz
 
   echo Installing PHP %1 %2 %3 %4
 
@@ -42,9 +44,17 @@ if "%BUILDENABLED%"=="1" (
     tools\7za x -y -otmp\ tmp\php-src-%PHPVER%.tar
     move /Y tmp\php-%PHPVER% php-files\src\%PHPVER%-nts-%MSVSVER%-%ARCH%
   )
+  echo Extracting IGBINARY extension sources
+  IF NOT EXIST php-files\src\%PHPVER%-nts-%MSVSVER%-%ARCH%\ext\igbinary (
+    IF NOT EXIST tmp\igbinary-%IGBINARY_VER%.tar (
+      tools\7za x -y -otmp\ src\igbinary-%IGBINARY_VER%.tgz
+    )
+    tools\7za x -y -ophp-files\src\%PHPVER%-nts-%MSVSVER%-%ARCH%\ext\ tmp\igbinary-%IGBINARY_VER%.tar
+    move /Y php-files\src\%PHPVER%-nts-%MSVSVER%-%ARCH%\ext\igbinary-%IGBINARY_VER% php-files\src\%PHPVER%-nts-%MSVSVER%-%ARCH%\ext\igbinary
+  )
   echo Building NTS
   IF NOT EXIST php-files\build\%PHPVER%-nts-%MSVSVER%-%ARCH% (
-    CALL wsetup_php_build.bat %PHPVER% nts %MSVSVER% %ARCH%
+    CALL wsetup_php_build.bat %PHPVER% nts %MSVSVER% %ARCH% %IGBINARY_VER%
   )
   echo Adding NTS Helpers
   IF NOT EXIST php-files\build\%PHPVER%-nts-%MSVSVER%-%ARCH%\phpunit.phar (
@@ -70,9 +80,17 @@ if "%BUILDENABLED%"=="1" (
     tools\7za x -y -otmp\ tmp\php-src-%PHPVER%.tar
     move /Y tmp\php-%PHPVER% php-files\src\%PHPVER%-zts-%MSVSVER%-%ARCH%
   )
+  echo Extracting IGBINARY extension sources
+  IF NOT EXIST php-files\src\%PHPVER%-zts-%MSVSVER%-%ARCH%\ext\igbinary (
+    IF NOT EXIST tmp\igbinary-%IGBINARY_VER%.tar (
+      tools\7za x -y -otmp\ src\igbinary-%IGBINARY_VER%.tgz
+    )
+    tools\7za x -y -ophp-files\src\%PHPVER%-zts-%MSVSVER%-%ARCH%\ext\ tmp\igbinary-%IGBINARY_VER%.tar
+    move /Y php-files\src\%PHPVER%-zts-%MSVSVER%-%ARCH%\ext\igbinary-%IGBINARY_VER% php-files\src\%PHPVER%-zts-%MSVSVER%-%ARCH%\ext\igbinary
+  )
   echo Building ZTS
   IF NOT EXIST php-files\build\%PHPVER%-zts-%MSVSVER%-%ARCH% (
-    CALL wsetup_php_build.bat %PHPVER% zts %MSVSVER% %ARCH%
+    CALL wsetup_php_build.bat %PHPVER% zts %MSVSVER% %ARCH% %IGBINARY_VER%
   )
   echo Adding ZTS Helpers
   IF NOT EXIST php-files\build\%PHPVER%-zts-%MSVSVER%-%ARCH%\phpunit.phar (
