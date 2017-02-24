@@ -30,7 +30,7 @@ CALL buildconf.bat --force --add-modules-dir=%PHPSRCDIR%ext-dev\
 
 echo CONFIGURE FOR BUILD
 IF %PHPTS%==nts SET ZTSARG="--disable-zts" || SET ZTSARG=""
-CALL configure.bat --disable-all --enable-phar=shared --enable-json --enable-one-shot --enable-cli --with-prefix=%PHPSRCDIR%\ext-dev-build\ --with-%EXTNAME%=shared %ZTSARG%
+CALL configure.bat --disable-all --enable-phar=shared --enable-json --enable-session --enable-igbinary --enable-one-shot --enable-cli --with-prefix=%PHPSRCDIR%\ext-dev-build\ --with-%EXTNAME%=shared %ZTSARG%
 @ECHO ON
 
 
