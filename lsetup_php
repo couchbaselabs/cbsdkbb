@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set +xe
+set -xe
 
 MYDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 PHPVER=$1
@@ -14,11 +14,11 @@ else
 
   echo "Downloading PHP $1 $2 $3"
 
-  wget -nc "http://php.net/get/php-$PHPVER.tar.bz2/from/this/mirror" -O src/php-src-$PHPVER.tar.bz2
-  wget -nc "https://phar.phpunit.de/phpunit-5.7.phar" -O src/php-phpunit.phar
-  wget -nc "https://phar.phpunit.de/phpunit-4.8.phar" -O src/php-phpunit-old.phar
-  wget -nc "http://phpdoc.org/phpDocumentor.phar" -O src/php-phpdoc.phar
-  wget -nc "https://pecl.php.net/get/igbinary-${IGBINARY_VER}" -O src/igbinary-${IGBINARY_VER}.tgz
+  [ ! -e  src/php-src-$PHPVER.tar.bz2 ]  && wget -nc "http://php.net/get/php-$PHPVER.tar.bz2/from/this/mirror" -O src/php-src-$PHPVER.tar.bz2
+  [ ! -e  src/php-phpunit.phar ]         && wget -nc "https://phar.phpunit.de/phpunit-5.7.phar" -O src/php-phpunit.phar
+  [ ! -e  src/php-phpunit-old.phar ]     && wget -nc "https://phar.phpunit.de/phpunit-4.8.phar" -O src/php-phpunit-old.phar
+  [ ! -e  src/php-phpdoc.phar ]          && wget -nc "http://phpdoc.org/phpDocumentor.phar" -O src/php-phpdoc.phar
+  [ ! -e  src/igbinary-${IGBINARY_VER}.tgz ] && wget -nc "https://pecl.php.net/get/igbinary-${IGBINARY_VER}" -O src/igbinary-${IGBINARY_VER}.tgz
 
   echo "Installing PHP $1 $2 $3"
 
