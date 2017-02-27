@@ -17,7 +17,7 @@ else
   [ ! -e  src/php-src-$PHPVER.tar.bz2 ]  && wget -nc "http://php.net/get/php-$PHPVER.tar.bz2/from/this/mirror" -O src/php-src-$PHPVER.tar.bz2
   [ ! -e  src/php-phpunit.phar ]         && wget -nc "https://phar.phpunit.de/phpunit-5.7.phar" -O src/php-phpunit.phar
   [ ! -e  src/php-phpunit-old.phar ]     && wget -nc "https://phar.phpunit.de/phpunit-4.8.phar" -O src/php-phpunit-old.phar
-  [ ! -e  src/php-phpdoc.phar ]          && wget -nc "http://phpdoc.org/phpDocumentor.phar" -O src/php-phpdoc.phar
+# [ ! -e  src/php-phpdoc.phar ]          && wget -nc "http://phpdoc.org/phpDocumentor.phar" -O src/php-phpdoc.phar
   [ ! -e  src/igbinary-${IGBINARY_VER}.tgz ] && wget -nc "https://pecl.php.net/get/igbinary-${IGBINARY_VER}" -O src/igbinary-${IGBINARY_VER}.tgz
 
   echo "Installing PHP $1 $2 $3"
@@ -45,9 +45,9 @@ else
       cp src/php-phpunit.phar php-files/build/$PHPVER-nts-$ARCH/phpunit.phar
     fi
   fi
-  if [ ! -e php-files/build/$PHPVER-nts-$ARCH/phpdoc.phar ]; then
-    cp src/php-phpdoc.phar php-files/build/$PHPVER-nts-$ARCH/phpdoc.phar
-  fi
+# if [ ! -e php-files/build/$PHPVER-nts-$ARCH/phpdoc.phar ]; then
+#   cp src/php-phpdoc.phar php-files/build/$PHPVER-nts-$ARCH/phpdoc.phar
+# fi
 
   echo "Installing ZTS"
   if [ ! -e php-files/src/$PHPVER-zts-$ARCH ]; then
@@ -71,8 +71,8 @@ else
       cp src/php-phpunit.phar php-files/build/$PHPVER-zts-$ARCH/phpunit.phar
     fi
   fi
-  if [ ! -e php-files/build/$PHPVER-zts-$ARCH/phpdoc.phar ]; then
-    cp src/php-phpdoc.phar php-files/build/$PHPVER-zts-$ARCH/phpdoc.phar
-  fi
+# if [ ! -e php-files/build/$PHPVER-zts-$ARCH/phpdoc.phar ]; then
+#   cp src/php-phpdoc.phar php-files/build/$PHPVER-zts-$ARCH/phpdoc.phar
+# fi
 
 fi
