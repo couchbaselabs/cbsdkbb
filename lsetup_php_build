@@ -27,7 +27,7 @@ case "$PHPVER" in
 esac
 
 PREFIX=$MYDIR/php-files/build/$PHPTAG
-./configure --disable-all --enable-phar=shared --enable-json --enable-cli --with-zlib --prefix=$PREFIX $ZTSARG CFLAGS="-ggdb3 $CFLAGS" && make -j8 && make install
+./configure --disable-all --enable-phar=shared --enable-json --enable-cli --prefix=$PREFIX $ZTSARG CFLAGS="-ggdb3 $CFLAGS" && make -j8 && make install
 (
   cd igbinary-${IGBINARY_VER}
   $PREFIX/bin/phpize
