@@ -16,13 +16,13 @@ mkdir -p php-files/deps
 mkdir -p php-files/src
 mkdir -p njs-files
 
-#if [ "$MACHINE_ARCH" == "x64" ]; then
+if [ "$MACHINE_ARCH" == "x64" ]; then
   ./lsetup_all x64 $PLAT
-#  ./lsetup_all x86 $PLAT
-#fi
-#if [ "$MACHINE_ARCH" == "x86" ]; then
-#  ./lsetup_all x86 $PLAT
-#fi
+  ./lsetup_all x86 $PLAT
+fi
+if [ "$MACHINE_ARCH" == "x86" ]; then
+  ./lsetup_all x86 $PLAT
+fi
 
 
 echo "Cleaning Up"
