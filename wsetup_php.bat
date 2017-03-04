@@ -5,6 +5,8 @@ SET PHPVER=%2
 SET MSVSVER=%3
 SET ARCH=%4
 SET IGBINARY_VER=2.0.1
+SET ZLIB_VER_F=1211
+SET ZLIB_VER=1.2.11
 SET PATCH="c:\progra~1\git\usr\bin\patch.exe"
 
 
@@ -29,6 +31,7 @@ if "%BUILDENABLED%"=="1" (
 
   tools\wget --no-check-certificate -nc "http://phpdoc.org/phpDocumentor.phar" -O src\php-phpdoc.phar
   tools\wget --no-check-certificate -nc "https://pecl.php.net/get/igbinary-%IGBINARY_VER%.tgz" -O src\igbinary-%IGBINARY_VER%.tgz
+  tools\wget --no-check-certificate -nc "http://zlib.net/zlib%ZLIB_VER_F%.zip" -O src\zlib-%ZLIB_VER%.zip
 
   echo Installing PHP %1 %2 %3 %4
 
@@ -55,7 +58,7 @@ if "%BUILDENABLED%"=="1" (
   )
   echo Building NTS
   IF NOT EXIST php-files\build\%PHPVER%-nts-%MSVSVER%-%ARCH% (
-    CALL wsetup_php_build.bat %PHPVER% nts %MSVSVER% %ARCH% %IGBINARY_VER%
+    CALL wsetup_php_build.bat %PHPVER% nts %MSVSVER% %ARCH% %ZLIB_VER%
   )
   echo Adding NTS Helpers
   IF NOT EXIST php-files\build\%PHPVER%-nts-%MSVSVER%-%ARCH%\phpunit.phar (
@@ -91,7 +94,7 @@ if "%BUILDENABLED%"=="1" (
   )
   echo Building ZTS
   IF NOT EXIST php-files\build\%PHPVER%-zts-%MSVSVER%-%ARCH% (
-    CALL wsetup_php_build.bat %PHPVER% zts %MSVSVER% %ARCH% %IGBINARY_VER%
+    CALL wsetup_php_build.bat %PHPVER% zts %MSVSVER% %ARCH% %ZLIB_VER%
   )
   echo Adding ZTS Helpers
   IF NOT EXIST php-files\build\%PHPVER%-zts-%MSVSVER%-%ARCH%\phpunit.phar (
@@ -108,7 +111,6 @@ if "%BUILDENABLED%"=="1" (
   IF NOT EXIST php-files\build\%PHPVER%-zts-%MSVSVER%-%ARCH%\phpdoc.phar (
     copy src\php-phpdoc.phar php-files\build\%PHPVER%-zts-%MSVSVER%-%ARCH%\phpdoc.phar
   )
-
 )
 
 ENDLOCAL

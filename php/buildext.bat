@@ -4,6 +4,7 @@ SETLOCAL
 SET BBSDK=%~dp0
 SET EXTPATH=%1\
 SET EXTNAME=%2
+SET ZLIB_VER=1.2.11
 
 IF EXIST %EXTPATH%\* GOTO Start
 ECHO Extension path must be a directory
@@ -12,6 +13,9 @@ GOTO End
 :Start
 CALL "%PHPSDKDIR%\bin\phpsdk_setvars.bat"
 @ECHO ON
+
+SET INCLUDE=%PHPSRCDIR%zlib-%ZLIB_VER%;%INCLUDE%
+SET LIB=%PHPSRCDIR%zlib-%ZLIB_VER%;%LIB%
 
 del %EXTPATH%\build\php_%EXTNAME%.dll
 
@@ -30,7 +34,7 @@ CALL buildconf.bat --force --add-modules-dir=%PHPSRCDIR%ext-dev\
 
 echo CONFIGURE FOR BUILD
 IF %PHPTS%==nts SET ZTSARG="--disable-zts" || SET ZTSARG=""
-CALL configure.bat --disable-all --enable-phar=shared --enable-json --enable-session --enable-igbinary --enable-one-shot --enable-cli --with-prefix=%PHPSRCDIR%\ext-dev-build\ --with-%EXTNAME%=shared %ZTSARG%
+CALL configure.bat --disable-all --enable-json --enable-session --enable-one-shot --enable-cli --enable-phar=shared --enable-igbinary=shared --with-prefix=%PHPSRCDIR%\ext-dev-build\ --with-%EXTNAME%=shared %ZTSARG%
 @ECHO ON
 
 
