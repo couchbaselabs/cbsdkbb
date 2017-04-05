@@ -21,7 +21,7 @@ echo Installing PHP %ARCH%
 CALL wsetup_php.bat 5.4 5.4.45 vc9 %ARCH%
 CALL wsetup_php.bat 5.5 5.5.38 vc11 %ARCH%
 CALL wsetup_php.bat 5.6 5.6.30 vc11 %ARCH%
-CALL wsetup_php.bat 7.0 7.0.16 vc14 %ARCH%
-CALL wsetup_php.bat 7.1 7.1.2  vc14 %ARCH%
+CALL wsetup_php.bat 7.0 7.0.17 vc14 %ARCH%
+CALL wsetup_php.bat 7.1 7.1.3  vc14 %ARCH%
 
 ENDLOCAL
