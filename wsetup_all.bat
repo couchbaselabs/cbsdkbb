@@ -4,7 +4,7 @@ SET ARCH=%1
 
 echo Installing libcouchbase %ARCH%
 IF "%LCBVER%"=="" (
-    SET LCBVER=2.7.4
+    SET LCBVER=2.7.5
 )
 
 CALL wsetup_lcb.bat %LCBVER% %ARCH%
