@@ -34,7 +34,8 @@ CALL buildconf.bat --force --add-modules-dir=%PHPSRCDIR%ext-dev\
 
 echo CONFIGURE FOR BUILD
 IF %PHPTS%==nts SET ZTSARG="--disable-zts" || SET ZTSARG=""
-CALL configure.bat --disable-all --enable-json --enable-session --enable-one-shot --enable-cli --enable-phar=shared --enable-igbinary=shared --with-prefix=%PHPSRCDIR%\ext-dev-build\ --with-%EXTNAME%=shared %ZTSARG%
+IF %DEP%==igbinary SET IGARG="--enable-igbinary=shared" || SET IGARG=""
+CALL configure.bat --disable-all --enable-json --enable-session --enable-one-shot --enable-cli --enable-phar=shared %IGARG% --with-prefix=%PHPSRCDIR%\ext-dev-build\ --with-%EXTNAME%=shared %ZTSARG%
 @ECHO ON
 
 

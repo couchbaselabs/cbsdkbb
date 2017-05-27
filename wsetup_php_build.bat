@@ -6,10 +6,11 @@ SET PHPTS=%2
 SET MSVSVER=%3
 SET ARCH=%4
 SET ZLIB_VER=%5
+SET DEP=%6
 
-echo Building PHP %1 %2 %3 %4
+echo Building PHP %1 %2 %3 %4 %5 %6
 
-SET PHPTAG=%PHPVER%-%PHPTS%-%MSVSVER%-%ARCH%
+SET PHPTAG=%PHPVER%-%PHPTS%-%MSVSVER%-%ARCH%-%DEP%
 
 CALL common\env.bat %MSVSVER% %ARCH%
 
@@ -29,7 +30,8 @@ CALL buildconf.bat --force
 
 SET PREFIX=%BBROOT%php-files\build\%PHPTAG%\
 IF "%PHPTS%"=="nts" SET ZTSARG="--disable-zts" || SET ZTSARG=""
-CALL configure.bat --enable-one-shot --disable-all --enable-session --enable-json --enable-cli --enable-phar=shared --enable-igbinary=shared --with-prefix=%PREFIX% %ZTSARG%
+IF "%DEP%"=="igbinary" SET IGARG="--enable-igbinary=shared" || SET IGARG=""
+CALL configure.bat --enable-one-shot --disable-all --enable-session --enable-json --enable-cli %IGARG% --enable-phar=shared --with-prefix=%PREFIX% %ZTSARG%
 
 nmake && nmake install
 
