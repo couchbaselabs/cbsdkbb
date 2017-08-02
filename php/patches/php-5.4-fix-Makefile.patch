@@ -1,0 +1,10 @@
+--- Makefile	2017-08-02 12:41:08.326316325 +0300
++++ Makefile.fix	2017-08-02 12:41:17.548371701 +0300
+@@ -159,7 +159,6 @@
+ 	find . -name \*.la -o -name \*.a | xargs rm -f 
+ 	find . -name \*.so | xargs rm -f
+ 	find . -name .libs -a -type d|xargs rm -rf
+-	find . -name \*.1 | xargs rm -f
+ 	rm -f libphp$(PHP_MAJOR_VERSION).la $(SAPI_CLI_PATH) $(OVERALL_TARGET) modules/* libs/*
+ 
+ distclean: clean
