@@ -4,7 +4,7 @@ set -xe
 MYDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 ARCH=$1
 PLAT=$2
-LCBVER=${LCBVER:-2.7.6}
+LCBVER=${LCBVER:-2.8.0}
 
 echo "Installing libcouchbase $ARCH"
 ./lsetup_lcb $LCBVER $ARCH $PLAT
@@ -18,8 +18,6 @@ echo "Installing libcouchbase $ARCH"
  ./lsetup_njs njs 7.4.0 $ARCH $PLAT
 
 echo "Installing PHP $ARCH"
-./lsetup_php 5.4.45 $ARCH $PLAT
-./lsetup_php 5.5.38 $ARCH $PLAT
 ./lsetup_php 5.6.31 $ARCH $PLAT
-./lsetup_php 7.0.21 $ARCH $PLAT
-./lsetup_php 7.1.7 $ARCH $PLAT
+./lsetup_php 7.0.23 $ARCH $PLAT
+./lsetup_php 7.1.9 $ARCH $PLAT

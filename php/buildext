@@ -15,10 +15,4 @@ $PHPDIR/php-config || true
 export CFLAGS="-ggdb3 $CFLAGS"
 ./configure --with-php-config=$PHPDIR/php-config --with-$EXTNAME=$EXTRAINFO $($PHPDIR/php-config --configure-options)
 
-case "$PHPVER" in
-  5.4*)
-    patch < $MYDIR/patches/php-5.4-fix-Makefile.patch
-  ;;
-esac
-
 make clean all

@@ -27,7 +27,6 @@ if "%BUILDENABLED%"=="1" (
   tools\wget --no-check-certificate -nc "http://php.net/get/php-%PHPVER%.tar.bz2/from/this/mirror" -O src\php-src-%PHPVER%.tar.bz2
   tools\wget --no-check-certificate -nc "http://windows.php.net/downloads/php-sdk/php-sdk-binary-tools-20110915.zip" -O src\php-sdk.zip
   tools\wget --no-check-certificate -nc "https://phar.phpunit.de/phpunit-5.7.phar" -O src\php-phpunit.phar
-  tools\wget --no-check-certificate -nc "https://phar.phpunit.de/phpunit-4.8.phar" -O src\php-phpunit-old.phar
 
   tools\wget --no-check-certificate -nc "http://phpdoc.org/phpDocumentor.phar" -O src\php-phpdoc.phar
   tools\wget --no-check-certificate -nc "https://pecl.php.net/get/igbinary-%IGBINARY_VER%.tgz" -O src\igbinary-%IGBINARY_VER%.tgz
@@ -64,15 +63,7 @@ REM ---------------------------------------------------
   )
   echo Adding NTS Helpers with IGBINARY
   IF NOT EXIST php-files\build\!PHPTAG!\phpunit.phar (
-    IF "%PHPVER:~0,3%"=="5.4" (
-      copy src\php-phpunit-old.phar php-files\build\!PHPTAG!\phpunit.phar
-    ) ELSE (
-      IF "%PHPVER:~0,3%"=="5.5" (
-        copy src\php-phpunit-old.phar php-files\build\!PHPTAG!\phpunit.phar
-      ) ELSE (
-        copy src\php-phpunit.phar php-files\build\!PHPTAG!\phpunit.phar
-      )
-    )
+    copy src\php-phpunit.phar php-files\build\!PHPTAG!\phpunit.phar
   )
   IF NOT EXIST php-files\build\!PHPTAG!\phpdoc.phar (
     copy src\php-phpdoc.phar php-files\build\!PHPTAG!\phpdoc.phar
@@ -94,15 +85,7 @@ REM ---------------------------------------------------
   )
   echo Adding NTS Helpers without IGBINARY
   IF NOT EXIST php-files\build\!PHPTAG!\phpunit.phar (
-    IF "%PHPVER:~0,3%"=="5.4" (
-      copy src\php-phpunit-old.phar php-files\build\!PHPTAG!\phpunit.phar
-    ) ELSE (
-      IF "%PHPVER:~0,3%"=="5.5" (
-        copy src\php-phpunit-old.phar php-files\build\!PHPTAG!\phpunit.phar
-      ) ELSE (
-        copy src\php-phpunit.phar php-files\build\!PHPTAG!\phpunit.phar
-      )
-    )
+    copy src\php-phpunit.phar php-files\build\!PHPTAG!\phpunit.phar
   )
   IF NOT EXIST php-files\build\!PHPTAG!\phpdoc.phar (
     copy src\php-phpdoc.phar php-files\build\!PHPTAG!\phpdoc.phar
@@ -132,15 +115,7 @@ REM ---------------------------------------------------
   )
   echo Adding ZTS Helpers with IGBINARY
   IF NOT EXIST php-files\build\!PHPTAG!\phpunit.phar (
-    IF "%PHPVER:~0,3%"=="5.4" (
-      copy src\php-phpunit-old.phar php-files\build\!PHPTAG!\phpunit.phar
-    ) ELSE (
-      IF "%PHPVER:~0,3%"=="5.5" (
-        copy src\php-phpunit-old.phar php-files\build\!PHPTAG!\phpunit.phar
-      ) ELSE (
-        copy src\php-phpunit.phar php-files\build\!PHPTAG!\phpunit.phar
-      )
-    )
+    copy src\php-phpunit.phar php-files\build\!PHPTAG!\phpunit.phar
   )
   IF NOT EXIST php-files\build\!PHPTAG!\phpdoc.phar (
     copy src\php-phpdoc.phar php-files\build\!PHPTAG!\phpdoc.phar
@@ -162,15 +137,7 @@ REM ---------------------------------------------------
   )
   echo Adding ZTS Helpers without IGBINARY
   IF NOT EXIST php-files\build\!PHPTAG!\phpunit.phar (
-    IF "%PHPVER:~0,3%"=="5.4" (
-      copy src\php-phpunit-old.phar php-files\build\!PHPTAG!\phpunit.phar
-    ) ELSE (
-      IF "%PHPVER:~0,3%"=="5.5" (
-        copy src\php-phpunit-old.phar php-files\build\!PHPTAG!\phpunit.phar
-      ) ELSE (
-        copy src\php-phpunit.phar php-files\build\!PHPTAG!\phpunit.phar
-      )
-    )
+    copy src\php-phpunit.phar php-files\build\!PHPTAG!\phpunit.phar
   )
   IF NOT EXIST php-files\build\!PHPTAG!\phpdoc.phar (
     copy src\php-phpdoc.phar php-files\build\!PHPTAG!\phpdoc.phar
