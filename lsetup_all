@@ -19,7 +19,7 @@ echo "Installing libcouchbase $ARCH"
  ./lsetup_njs njs 8.9.0 $ARCH $PLAT
 
 echo "Installing PHP $ARCH"
-./lsetup_php 5.6.32 $ARCH $PLAT
-./lsetup_php 7.0.26 $ARCH $PLAT
-./lsetup_php 7.1.12 $ARCH $PLAT
-./lsetup_php 7.2.0 $ARCH $PLAT
+./lsetup_php 5.6.33 $ARCH $PLAT
+./lsetup_php 7.0.27 $ARCH $PLAT
+./lsetup_php 7.1.14 $ARCH $PLAT
+./lsetup_php 7.2.2 $ARCH $PLAT
