@@ -4,7 +4,7 @@ set -xe
 MYDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 ARCH=$1
 PLAT=$2
-LCBVER=${LCBVER:-2.9.0}
+LCBVER=${LCBVER:-2.9.2}
 
 echo "Installing libcouchbase $ARCH"
 ./lsetup_lcb $LCBVER $ARCH $PLAT
