@@ -4,7 +4,7 @@ SET ARCH=%1
 
 echo Installing libcouchbase %ARCH%
 IF "%LCBVER%"=="" (
-    SET LCBVER=2.9.2
+    SET LCBVER=2.9.5
 )
 
 CALL wsetup_lcb.bat %LCBVER% %ARCH%
@@ -19,8 +19,8 @@ CALL wsetup_njs.bat njs 7.4.0 %ARCH%
 CALL wsetup_njs.bat njs 8.9.0 %ARCH%
 
 echo Installing PHP %ARCH%
-CALL wsetup_php.bat 5.6 5.6.36 vc11 %ARCH%
-CALL wsetup_php.bat 7.0 7.0.30 vc14 %ARCH%
-CALL wsetup_php.bat 7.1 7.1.18 vc14 %ARCH%
+CALL wsetup_php.bat 5.6 5.6.38 vc11 %ARCH%
+CALL wsetup_php.bat 7.0 7.0.32 vc14 %ARCH%
+CALL wsetup_php.bat 7.1 7.1.22 vc14 %ARCH%
 
 ENDLOCAL
